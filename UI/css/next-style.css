@@ -21,20 +21,21 @@ table th{
 
 header {
 	position: absolute;
-
-	height: 44px;
+ padding-top:20px;
+	height: 80px;
 	width: 100%;
 	background-color:#4CAF50;
 	color: white;
 	z-index: 3;
 	margin-top: 0;
+	text-align:center;
 }
 
 header a {
 	color: white;
 	font-size: 30px;
 	text-decoration: none;
-	padding-left: 20px;
+	padding-left: 30px;
 	font-weight: bold;
 }
 
@@ -94,6 +95,7 @@ header a.minimize_button {
 	margin-left: 0;
 	padding: 0;
 	padding-top: 30px;
+	padding-top: 5%;
 	background-color: #d5dae5;
 }
 
@@ -143,7 +145,7 @@ header a.minimize_button {
 	.side-nav {
 		width: 195px;
 		height: 50%;
-		margin-top: 100px;
+		margin-top: 50px;
 	}
 	.side-nav ul li {
 		text-align: left;
