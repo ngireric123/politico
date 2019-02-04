@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Politico Dashboard</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../css/next-style.css" type="text/css">
+</head>
+<body>
+	<header>
+		<a href="userdashboard.html"><span></span>Politico</a>
+
+		<a href="#" class="minimize_button" onclick="togle_nav_func()"><span><i class="fa fa-bars fa-1x"></i></span></a>
+	</header>
+  <div class="side-nav visible" id="togle_nav">
+    <nav>
+      <ul>
+        <li>
+          <a href="userdashboard.html">
+            <span ><i class="fa fa-home fa-fw"></i></span>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="party.html">
+            <span ><i class="fa fa-asterisk"></i></span>
+            <span>Political Party</span>
+          </a>
+        </li>
+        <li>
+          <a href="office.html">
+            <span ><i class="fa fa-compress"></i></span>
+            <span>Political Office</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="petition.html">
+            <span ><i class="fa fa-pencil-square"></i></span>
+            <span>Petition</span>
+          </a>
+        </li>
+        <li>
+          <a href="vote.html">
+            <span ><i class="fa fa-user"></i></span>
+            <span>Vote</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="vote-resultu.html">
+            <span ><i class="fa fa-envelope"></i></span>
+            <span>Vote Result</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="viewprofile.html">
+            <span ><i class="fa fa-envelope"></i></span>
+            <span>View Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="../index.html">
+            <span ><i class="fa fa-power-off"></i></span>
+            <span>Logout</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+
+
+		<div class="main-content">
+			<div class="title">
+				home / office
+			</div>
+
+			<div class="main">
+        <!-- new petition-->
+        <div class="widget widget_table" style="overflow-x:auto;">
+          <div class="title heado">New Petition</div>
+          <div class="widget_stat widget_stat_table">
+            <div style="overflow-x:auto;">
+              <form action="#" method="GET">
+
+               <div class="input-group">
+                 <label>Petition</label>
+                 <input type="text" name="candidate_name">
+               </div>
+               <div class="input-group">
+                 <label>Office</label>
+                 <select id="types" name="type">
+ 								  <option value="">Select office type</option>
+ 								  <option value="federal">Federal Government</option>
+ 								  <option value="legislative">Legislative Government</option>
+ 								  <option value="state">State Government</option>
+ 								  <option value="local">Local government</option>
+ 								</select>
+               </div>
+
+              <div class="input-group">
+                  <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <button type="submit" name="submit" class="btn btnmore">New Petition</button>
+              </div>
+
+            </form>
+            </div>
+          </div>
+        </div>
+        <!-- petition -->
+
+
+
+
+
+
+				<!-- petition -->
+				<div class="widget widget_table" style="overflow-x:auto;">
+					<div class="title heado">Petition</div>
+
+          <article class="card">
+          <div class="text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
+            <p><strong>Created on:</strong> 2/1/2010</p>
+            <p><strong>Created By:</strong> Gasore fridolin</p>
+            <p><strong>Office:</strong> National Assembly Member</p>
+          </div>
+          </article>
+
+
+
+          <article class="card">
+          <div class="text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
+            <p><strong>Created on:</strong> 2/1/2010</p>
+            <p><strong>Created By:</strong> Gasore fridolin</p>
+            <p><strong>Office:</strong> National Assembly Member</p>
+          </div>
+          </article>
+
+          <article class="card">
+          <div class="text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
+            <p><strong>Created on:</strong> 2/1/2010</p>
+            <p><strong>Created By:</strong> Gasore fridolin</p>
+            <p><strong>Office:</strong> National Assembly Member</p>
+          </div>
+          </article>
+          <article class="card">
+          <div class="text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
+            <p><strong>Created on:</strong> 2/1/2010</p>
+            <p><strong>Created By:</strong> Gasore fridolin</p>
+            <p><strong>Office:</strong> National Assembly Member</p>
+          </div>
+          </article>
+
+				</div>
+				<!-- petition -->
+			</div>
+
+
+		</div>
+
+
+        <div class="footer">
+          <p>  Politico | by Ngirababyeyi Eric &copy; 2019 </p>
+        </div>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
