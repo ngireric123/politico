@@ -9,6 +9,6 @@ app.get('/', (req, res) => {
 	res.send('Welcome to Politico apps');
 });
 
-const port = process.env.PORT || 8901;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log ( `Listen on port ${port} ...`));
 export default app;
