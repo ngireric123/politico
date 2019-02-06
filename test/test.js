@@ -79,3 +79,20 @@ describe('Delete specific Political party', () => {
 		});
 	});
 });
+
+describe('POST Political office', () => {
+	it('it should POST an office', (done) => {
+		chai.request(host)
+		.post('/api/v1/offices')
+		.send({
+			type: "federal",
+			name: "Governor"
+		})
+
+		.end((err, res) => {
+			res.should.have.status(404);
+			res.body.should.be.a('object');
+			done();
+		});
+	});
+});
