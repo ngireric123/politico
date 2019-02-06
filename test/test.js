@@ -109,3 +109,14 @@ describe('GET all Political offices', () => {
 		});
 	});
 });
+describe('GET specific Political office', () => {
+	it('it should show specific political office', (done) => {
+		chai.request(host)
+		.get('/api/v1/offices/1')
+		.end((err, res) => {
+			res.should.have.status(404);
+			res.body.should.be.a('object');
+			done();
+		});
+	});
+});
