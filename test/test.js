@@ -96,3 +96,16 @@ describe('POST Political office', () => {
 		});
 	});
 });
+
+describe('GET all Political offices', () => {
+	it('it should show all political offices', (done) => {
+		chai.request(host)
+		.get('/api/v1/offices')
+
+		.end((err, res) => {
+			res.should.have.status(404);
+			res.body.should.be.a('object');
+			done();
+		});
+	});
+});
