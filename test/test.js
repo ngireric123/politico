@@ -8,13 +8,13 @@ chai.use(chaiHttp);
 
 
 describe('POST Political party', () => {
-	it('it should CREATE a party', (done) => {
+	it('it should POST a party', (done) => {
 		chai.request(host)
 		.post('/api/v1/parties')
 		.send({
-			name: "PL",
-			hqaddress: "KG23",
-			logourl: "jmfk.jpg"
+			name: "RPF",
+			hqaddress: "Kacyiru",
+			logourl: "rpf.png"
 		})
 
 		.end((err, res) => {
@@ -26,9 +26,23 @@ describe('POST Political party', () => {
 });
 
 describe('GET all Political parties', () => {
-	it('It should show the list of registered political parties', (done) => {
+	it('it should show all political parties', (done) => {
 		chai.request(host)
 		.get('/api/v1/parties')
+
+		.end((err, res) => {
+			res.should.have.status(200);
+			res.body.should.be.a('object');
+			done();
+		});
+	});
+});
+
+
+describe('GET specific Political party', () => {
+	it('it should show specific political party', (done) => {
+		chai.request(host)
+		.get('/api/v1/parties/1')
 
 		.end((err, res) => {
 			res.should.have.status(200);
