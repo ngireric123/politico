@@ -66,7 +66,42 @@ class Party {
   	})
   	}
 
+    // Update a specific political party
 
+  	static async update(req, res){
+  		const party_id = parseInt(req.params.id);
+  		let job = "";
+  		for(let i = 0; i < parties.length; i ++){
+  			if(parties[i].id == party_id){
+  				const schema = {
+  					name: Joi.string().min(2).trim(),
+  					hqaddress: Joi.string().min(3).trim(),
+  					logourl: Joi.string().min(3).trim()
+  				}
+  				const {error} = Joi.validate(req.body, schema);
+  				if(error) return res.status(400).send({
+  									status: 400,
+  									error: error.details[0].message
+  								});
+  				if(req.body.name) parties[i].name = req.body.name;
+  				if(req.body.hqaddress) parties[i].hqaddress = req.body.hqaddress;
+  				if(req.body.logourl) parties[i].logourl = req.body.logourl;
+  				res.status(200).send({
+  					status: 200,
+  					data: parties[i]
+  				});
+  				job = "done";
+  			}
+
+  		}
+
+  		if ( job != "done" ){
+  			  res.status(404).send({
+  					status: 404,
+  					error: "political party not found"
+  				});
+  		}
+  	}
 
 }
 

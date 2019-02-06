@@ -51,3 +51,18 @@ describe('GET specific Political party', () => {
 		});
 	});
 });
+
+describe('Patch specific Political party', () => {
+	it('it should update specific political party', (done) => {
+		chai.request(host)
+		.patch('/api/v1/parties/1')
+		.send({
+			name: "Republican"
+		})
+		.end((err, res) => {
+			res.should.have.status(200);
+			res.body.should.be.a('object');
+			done();
+		});
+	});
+});
