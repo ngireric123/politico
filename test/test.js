@@ -66,3 +66,16 @@ describe('Patch specific Political party', () => {
 		});
 	});
 });
+
+describe('Delete specific Political party', () => {
+	it('it should delete a specific political party', (done) => {
+		chai.request(host)
+		.delete('/api/v1/parties/1')
+
+		.end((err, res) => {
+			res.should.have.status(200);
+			res.body.should.be.a('object');
+			done();
+		});
+	});
+});

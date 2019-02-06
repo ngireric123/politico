@@ -103,6 +103,34 @@ class Party {
   		}
   	}
 
+    // delete a particular political party
+
+    	static async delete(req, res){
+    		const party_id = parseInt(req.params.id);
+    		let job = "";
+    		for(let i = 0; i < parties.length; i ++){
+    			if(parties[i].id == party_id){
+
+    				parties.splice(i, 1);
+    				res.status(200).send({
+    					status: 200,
+    					message: "Political party deleted"
+    				});
+    				job = "done";
+    			}
+
+    		}
+
+    		if ( job != "done" ){
+    			  res.status(404).send({
+    					status: 404,
+    					error: "political party not found"
+    				});
+    		}
+    	}
+
+
+
 }
 
 export default Party;
