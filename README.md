@@ -1,2 +1,2 @@
-# Politico [![Build Status](https://travis-ci.org/ngireric123/politico.svg?branch=develop)](https://travis-ci.org/ngireric123/politico)
+# Politico [![Build Status](https://travis-ci.org/ngireric123/politico.svg?branch=develop)](https://travis-ci.org/ngireric123/politico) [![Coverage Status](https://coveralls.io/repos/github/ngireric123/politico/badge.svg?branch=develop)](https://coveralls.io/github/ngireric123/politico?branch=develop)
 Politico is a platform for the politicians and citizens. It helps citizens give mandates to politicians running for different political offices
