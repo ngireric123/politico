@@ -8,6 +8,9 @@
     "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill --require babel-register --timeout 10000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
+  "engines": {
+   "node": "8.15.0"
+ },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ngireric123/politico.git"
