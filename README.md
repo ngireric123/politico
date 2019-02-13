@@ -14,6 +14,17 @@ Run Tests
 
 `npm run test`
 
+# User Interface
+https://ngireric123.github.io/political-challenge1/
+
+
+# Technologies Used
+
+|    Server     | Testing Framework |  Style Guide  |  Linting Library |
+| ------------- | -------------     |  ------------- | -------------   | 
+| * Node        |     * Mocha       |  * Airbnb      |     * ESLint    |
+| * Express     |                   |                |                 |
+
 # API-Endpoints
 JSON Object is returned for every API endpoint, structure of return JSON Object:
 
