@@ -1,13 +1,9 @@
 import parties from '../models/party';
 import Joi from 'joi';
+
 class Party {
   //Get all political Parties
   static async getAllParties (req, res){
-    const long = parties.length;
-    if(long  === 0) return res.status(404).send({
-      status: 404,
-      error: 'No political party registered'
-    });
     res.status(200).send({
       status: 200,
       data:parties
@@ -15,15 +11,12 @@ class Party {
  }
 
  // create a new political party
-
  	static async create(req, res){
-
  		const schema = {
- 			name: Joi.string().max(255).min(2).required().trim(),
+      name:Joi.string().regex(/^[a-zA-Z] |[a-zA-Z] ?[a-zA-Z]+$/).min(2).required(),
  			hqaddress: Joi.string().max(255).min(2).required().trim(),
  			logourl: Joi.string().max(255).min(3).required().trim()
  		}
-
  		const {error} = Joi.validate(req.body, schema);
 
  		if(error) return res.status(400).send({
@@ -37,11 +30,15 @@ class Party {
  			hqaddress: req.body.hqaddress,
  			logourl: req.body.logourl
  		}
-
+    const pname = parties.find(n => n.name === req.body.name);
+    pname ? res.send ({
+    error: "This party is already registered"
+    }) :null;
  		parties.push(newParty);
 
  		res.status(201).send({
  			status: 201,
+      message:"Political Party Created",
  			data: newParty
  		});
  	}

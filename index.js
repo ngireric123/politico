@@ -9,9 +9,12 @@ app.use ('/api/v1/parties', party);
 app.use('/api/v1/offices', office);
 
 app.get('/', (req, res) => {
-	res.send('Welcome to Politico apps');
+	res.status(200).json({
+    status: 200,
+    message: 'Welcome to Politico apps!',
+  });
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log ( `Listen on port ${port} ...`));
+app.listen(port, () => console.log ( `Politico is running on port ${port} ...`));
 export default app;
