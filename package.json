@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node --presets env index",
-    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill --require babel-register --timeout 10000 --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --reporter=html --reporter=text mocha --require babel-polyfill --require babel-register --timeout 10000 test/*js --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "show-coverage": "xdg-open coverage/index.html",
+    "lint":" node_modules/.bin/eslint"
   },
   "engines": {
-   "node": "8.15.0"
- },
+    "node": "8.15.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ngireric123/politico.git"
@@ -39,6 +41,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
     "mocha": "^5.2.0"
   }
 }
