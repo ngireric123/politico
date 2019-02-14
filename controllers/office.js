@@ -23,11 +23,13 @@ class Office {
 			type: req.body.type,
 			name: req.body.name
 		}
-		//promise
-const fname = offices.find(n => n.name === req.body.name);
-fname ? res.send ({
-error: "This Office you are trying to register is already exist"
-}) :null;
+		const offine_name = await offices.find(n => n.name === req.body.name);
+		if ( offine_name ) {
+      return res.status(400).json({
+        status: 400,
+        error:"The political office you are trying to insert is already exist"
+      });
+    }
 		offices.push(newOffice);
 
 		return res.status(201).send({

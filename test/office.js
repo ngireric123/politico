@@ -13,7 +13,6 @@ describe('POST Political office', () => {
 			type: "federal",
 			name: "Governor"
 		})
-
 		.end((err, res) => {
 			res.should.have.status(201);
 			res.body.should.be.a('object');
@@ -21,7 +20,6 @@ describe('POST Political office', () => {
 		});
 	});
 });
-
 
 describe('GET all Political offices', () => {
 	it('it should show all political offices', (done) => {
