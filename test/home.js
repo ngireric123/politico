@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../index';
+import host from '../index';
 
 chai.should();
 chai.expect();
@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 describe('Home page', () => {
   it('it should open the index', (done) => {
-    chai.request(server)
+    chai.request(host)
       .get('/')
       .end((err, res) => {
         res.should.have.status(200);
