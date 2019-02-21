@@ -11,7 +11,7 @@ class CreateUser {
       // this.users = res.rowCount;
     });
   }
-  
+
   check(email) {
     const user = this.users.find(oldEmail => oldEmail.email === email);
     return user;
