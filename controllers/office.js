@@ -18,6 +18,7 @@ class Office {
         error: error.details[0].message,
       });
     }
+
     const office = await postOffice.officeCheck(req.body.name);
     if (!office) {
       return res.status(409).send({
@@ -32,7 +33,7 @@ class Office {
       data: newOffice,
     });
   }
-  // get all political offices
+  // get offices
 
   static async getAll(req, res) {
     const count = await postOffice.getOffices();
@@ -42,19 +43,19 @@ class Office {
     });
   }
 
-  // get specific political office
+  // get office
 
   static async getOne(req, res) {
-    const office_id = parseInt(req.params.id);
-    const result = [];
-    for (let i = 0; i < offices.length; i++) {
-      if (offices[i].id == office_id) {
-        result.push(offices[i]);
-      }
+    const result = await postOffice.getOneOffice(req.params.id);
+    if (result.rows.length === 0) {
+      return res.status(404).send({
+        status: 404,
+        error: 'not political office found',
+      });
     }
-    res.status(200).send({
+    return res.status(200).send({
       status: 200,
-      error: 'Political Office not Found',
+      data: result.rows[0],
     });
   }
 }
