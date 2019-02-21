@@ -22,6 +22,11 @@ class Office {
     this.res = await pool.query('SELECT * FROM office');
     return this.res.rows;
   }
+
+  async getOneOffice(id) {
+    this.res = await pool.query('SELECT * FROM party WHERE id = $1', [id]);
+    return this.res;
+  }
 }
 
 export default new Office();
