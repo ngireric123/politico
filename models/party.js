@@ -1,5 +1,5 @@
 import pool from './db';
-// party
+
 class Parties {
   async createParty(data) {
     this.newParty = [
@@ -12,13 +12,14 @@ class Parties {
     return [this.res.rows[0]];
   }
 
-  async check(name) {
+  async checkp(name) {
     this.res = await pool.query('SELECT * FROM party  WHERE name = $1', [name]);
-    if (this.res.rowCount > 0) {
-      this.party = [this.res.rows[0]];
+    if (this.res.rowCount < 1) {
+      return true;
     }
-    return this.party;
+    return false;
   }
+
 
   async getAll() {
     this.res = await pool.query('SELECT * FROM party');
@@ -29,10 +30,16 @@ class Parties {
   async getOneParty(id) {
     this.party = [];
     this.res = await pool.query('SELECT * FROM party WHERE id = $1', [id]);
-    if (this.res.rowCount === 1) {
+    if (this.res.rowCount < 1) {
       this.party.push(this.res.rows[0]);
     }
     return this.party;
+  }
+
+  // delete models
+  async deleteParty(id) {
+    this.newId = parseInt(id, 10);
+    await pool.query('DELETE FROM party WHERE id = $1', [this.newId]);
   }
 }
 export default new Parties();
