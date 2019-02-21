@@ -17,6 +17,11 @@ class Office {
     }
     return false;
   }
+
+  async getOffices() {
+    this.res = await pool.query('SELECT * FROM office');
+    return this.res.rows;
+  }
 }
 
 export default new Office();
