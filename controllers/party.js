@@ -6,9 +6,9 @@ class Party {
   static async createParty(req, res) {
     const schema = {
       name: Joi.string().regex(/$^[a-zA-Z] |[a-zA-Z] ?[a-zA-Z]+$/).min(2).required(),
-      hqaddress: Joi.string().max(255).min(2).required()
+      hqAddress: Joi.string().max(255).min(2).required()
         .trim(),
-      logourl: Joi.string().max(255).min(3).required()
+      logoUrl: Joi.string().max(255).min(3).required()
         .trim(),
     };
     const { error } = Joi.validate(req.body, schema);
@@ -19,8 +19,9 @@ class Party {
         error: error.details[0].message,
       });
     }
-    const party = await Parties.check(req.body.name);
-    if (party.length !== 0) {
+
+    const party1 = await Parties.checkp(req.body.name);
+    if (!party1) {
       return res.status(409).send({
         status: 409,
         error: 'party you are entering is already exist',
@@ -39,6 +40,37 @@ class Party {
     res.status(200).send({
       status: 200,
       data: parties,
+    });
+  }
+
+  // get party
+  static async getParty(req, res) {
+    const result = await Parties.getOneParty(req.params.id);
+    if (result.length === 0) {
+      return res.status(404).send({
+        status: 404,
+        error: 'political party you are looking for is not registered',
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      data: result,
+    });
+  }
+
+  static async delete(req, res) {
+    const result = await Parties.getAll(req.params.id);
+
+    if (result.length !== 0) {
+      await Parties.deleteParty(req.params.id);
+      return res.status(200).send({
+        status: 200,
+        message: 'Political party has been removed completelly',
+      });
+    }
+    return res.status(404).send({
+      status: 404,
+      error: ' not political party found',
     });
   }
 }

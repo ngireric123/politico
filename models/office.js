@@ -11,12 +11,11 @@ class Office {
   }
 
   async officeCheck(name) {
-    this.result = [];
     this.res = await pool.query('SELECT * FROM office WHERE name = $1', [name]);
     if (this.res.rowCount < 1) {
-      this.office = [this.res.rows[0]];
+      return true;
     }
-    return this.result;
+    return false;
   }
 }
 

@@ -1,8 +1,8 @@
 import Joi from 'joi';
-import offices from '../models/office';
+import postOffice from '../models/office';
 
 class Office {
-// create a political office
+  // create a political office
   static async create(req, res) {
     const schema = {
       type: Joi.string().min(5)
@@ -14,55 +14,48 @@ class Office {
     const { error } = Joi.validate(req.body, schema);
     if (error) {
       return res.status(400).send({
-      status: 400,
-    error: error.details[0].message
-    })
-    };
-		const newOffice = {
-			id: offices.length + 1,
-			type: req.body.type,
-			name: req.body.name
-		}
-		const offine_name = await offices.find(n => n.name === req.body.name);
-		if ( offine_name ) {
-      return res.status(400).json({
         status: 400,
-        error:"The political office you are trying to insert is already exist"
+        error: error.details[0].message,
       });
     }
-		offices.push(newOffice);
+    const office = await postOffice.officeCheck(req.body.name);
+    if (!office) {
+      return res.status(409).send({
+        status: 409,
+        error: 'office you are entering is exist',
+      });
+    }
 
-		return res.status(201).send({
-			status: 201,
-			message: "Political Office created",
-			data: newOffice
-		});
-	}
+    const newOffice = await postOffice.postOffice(req.body);
+    return res.status(201).send({
+      status: 201,
+      data: newOffice,
+    });
+  }
+  // get all political offices
 
-  //get all political offices
+  static async getAll(req, res) {
+    const count = offices.length;
+    res.status(200).send({
+      status: 200,
+      data: offices,
+    });
+  }
 
-	static async getAll(req, res){
-		const count = offices.length;
-		res.status(200).send({
-			status: 200,
-			data: offices
-		});
-	}
+  // get specific political office
 
-  	// get specific political office
-
-  	static async getOne(req, res){
-  		const office_id = parseInt(req.params.id);
-  		const result = [];
-  		for(let i = 0; i < offices.length; i ++){
-  			if(offices[i].id == office_id){
-  				result.push(offices[i]);
-  			}
-  		}
-  	res.status(200).send({
-  			status: 200,
-  			data: result
-  		})
-  	}
+  static async getOne(req, res) {
+    const office_id = parseInt(req.params.id);
+    const result = [];
+    for (let i = 0; i < offices.length; i++) {
+      if (offices[i].id == office_id) {
+        result.push(offices[i]);
+      }
+    }
+    res.status(200).send({
+      status: 200,
+      error: 'Political Office not Found',
+    });
+  }
 }
 export default Office;
