@@ -26,14 +26,27 @@ class Parties {
     return this.res.rows;
   }
 
+
+  // party update
+  async PartyUpdate(id, data, party) {
+    const newName = data.name || party[0].name;
+    const newHqAddress = data.hqAddress || party[0].hqAddress;
+    const newLogoUrl = data.logoUrl || party[0].logoUrl;
+    this.newId = parseInt(id, 10);
+    this.newData = [
+      newName,
+      newHqAddress,
+      newLogoUrl,
+      this.newId,
+    ];
+    this.res = await pool.query('UPDATE party SET name = $1, "hqAddress" = $2, "logoUrl" = $3 WHERE id = $4 RETURNING *', this.newData);
+    return [this.res.rows[0]];
+  }
+
   // get one party method
   async getOneParty(id) {
-    this.party = [];
     this.res = await pool.query('SELECT * FROM party WHERE id = $1', [id]);
-    if (this.res.rowCount < 1) {
-      this.party.push(this.res.rows[0]);
-    }
-    return this.party;
+    return this.res;
   }
 
   // delete models

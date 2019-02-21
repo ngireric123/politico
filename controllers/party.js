@@ -46,7 +46,7 @@ class Party {
   // get party
   static async getParty(req, res) {
     const result = await Parties.getOneParty(req.params.id);
-    if (result.length === 0) {
+    if (result.rows.length === 0) {
       return res.status(404).send({
         status: 404,
         error: 'political party you are looking for is not registered',
@@ -54,9 +54,10 @@ class Party {
     }
     return res.status(200).send({
       status: 200,
-      data: result,
+      data: result.rows[0],
     });
   }
+
 
   static async delete(req, res) {
     const result = await Parties.getAll(req.params.id);
@@ -71,6 +72,45 @@ class Party {
     return res.status(404).send({
       status: 404,
       error: ' not political party found',
+    });
+  }
+
+  // Update a political party
+  static async updateParty(req, res) {
+    const schema = {
+      name: Joi.string().regex(/$^[a-zA-Z] |[a-zA-Z] ?[a-zA-Z]+$/).min(2).required(),
+      hqAddress: Joi.string().max(255).min(2).required()
+        .trim(),
+      logoUrl: Joi.string().max(255).min(3).required()
+        .trim(),
+    };
+    const { error } = Joi.validate(req.body, schema);
+    if (error) {
+      return res.status(400).send({
+        status: 400,
+        error: error.details[0].message,
+      });
+    }
+
+    const result = await Parties.getOneParty(req.params.id);
+    if (result.length !== 0) {
+      const party = await Parties.checkp(req.body.name);
+      if (!party) {
+        return res.status(409).send({
+          status: 409,
+          error: 'party you are trying to update is in the system',
+        });
+      }
+      const newParty = await Parties.PartyUpdate(req.params.id, req.body, result);
+      return res.status(200).send({
+        status: 200,
+        data: newParty,
+      });
+    }
+
+    return res.status(404).send({
+      status: 404,
+      error: 'not political party found',
     });
   }
 }
