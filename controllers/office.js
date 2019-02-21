@@ -35,10 +35,10 @@ class Office {
   // get all political offices
 
   static async getAll(req, res) {
-    const count = offices.length;
+    const count = await postOffice.getOffices();
     res.status(200).send({
       status: 200,
-      data: offices,
+      data: count,
     });
   }
 
