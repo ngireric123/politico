@@ -1,3 +1,7 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
 body {
   height: 100vh;
   background-size: cover;
@@ -55,7 +59,14 @@ img {
   text-decoration: none;
   color: white;
 }*/
-
+h1, h2, h3 {
+	margin: 0;
+	padding: 1em 0;
+}
+p {
+	margin: 0;
+	padding: 1em 0;
+}
 
 
 
@@ -80,7 +91,7 @@ img {
 	background-color:#4CAF50;
 	color: white;
 	height: 50px;
-	text-align: center;
+	text-align: left;
 	line-height: 50px;
 	position: fixed;
 	width: 100%;
@@ -91,15 +102,16 @@ img {
 }
  a:link, a:visited  {
   text-decoration: none;
-  color: white;}
+  color: white;
+  }
 
 .footer {
    position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
-   background-color: #f2f2f2;
-   color: black;
+   background-color: #4CAF50;
+   color: white;
    text-align: center;
 
 
@@ -112,7 +124,6 @@ img {
 .btn2 {
 	display: inline-block;
 	background:#4CAF50;
-
 	text-decoration: none;
 	padding: 1em 2em;
 	border: 1px solid #4CAF50;
@@ -217,9 +228,20 @@ header.topbar {
 /* main*/
 
 .title {
+  padding: 1em 2em;
   text-align: center;
   font-family: "Roboto", sans-serif;
   margin-top: 100px;
+
+
+	height: 50px;
+
+	line-height: 50px;
+	position: fixed;
+	width: 100%;
+	padding-left: 10px;
+	font-weight: bolder;
+	font-size: 30px;
 
 }
 
@@ -382,21 +404,6 @@ header.topbar {
 	margin: 0 0 10px;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   #showcase {
   	min-height: 450px;
   	color: #fff;
@@ -404,13 +411,12 @@ header.topbar {
   }
 
   .white {
-  	color: #5f9ea0;
+  	color: black;
   }
 
   #showcase {
   	background-color: #fff;
-  	background-image: url("../images/vote.jpg");
-
+  	background-image: url("../images/vote1.gif");
   	background-position: center;
   	background-repeat: no-repeat;
   	background-size: cover;
@@ -419,21 +425,20 @@ header.topbar {
   	z-index: -1;
   	color: black;
   }
+  #showcase .background-image {
+  opacity: 0.2;
+}
+  #showcase.grid {
+  	color: black;
+  }
   #showcase.grid {
   	color: black;
   	height: 510px;
   }
-
-
-
-
-
-
-
-
-
-
-
+  #showcase h1 {
+	padding-top: 100px;
+	padding-bottom: 0;
+}
 
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}

@@ -28,7 +28,7 @@ header {
 	color: white;
 	z-index: 3;
 	margin-top: 0;
-	text-align:center;
+	text-align:left;
 }
 
 header a {
@@ -113,8 +113,14 @@ header a.minimize_button {
 }
 
 @media screen and (min-width:600px) {
-	.side-nav.visible {
-		display: block;
+	#togle_nav{
+		display: none!important;
+	}
+	nav .hide-on-small{
+		display:none !important;
+	}
+	.visible {
+		display: none;
 	}
 	.side-nav {
 		width: 80px;
@@ -139,6 +145,9 @@ header a.minimize_button {
 }
 
 @media screen and (min-width:800px) {
+	#togle_nav{
+		display: block!important;
+	}
 	.side-nav.visible {
 		display: block;
 	}
@@ -234,8 +243,8 @@ header a.minimize_button {
 }
 
 .footer {
-	background-color: #5f9ea0;
-	border-bottom: 1px solid #5f9ea0;
+	background-color: #4CAF50;
+	border-bottom: 1px solid #4CAF50;
 	padding: 10px 20px;
 	font-weight: 700;
 	color: #fff;
