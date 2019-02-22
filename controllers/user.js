@@ -1,4 +1,5 @@
 
+import bcrypt from 'bcrypt';
 import Joi from 'joi';
 import _ from 'underscore';
 import jwt from 'jsonwebtoken';
@@ -27,10 +28,12 @@ class User {
     }
     // const newemail = CreateUser.emailCheck(req.body.email);
     const user = await CreateUser.emailCheck(req.body.email);
-    if (user.length !== 0) {
+    
+    // if (user.length !== 0) {
+    if (!user) {
       return res.status(409).send({
         status: 409,
-        error: `${user[0].email} has been taken`,
+        error: 'E-mail is in the system',
       });
     }
 
@@ -59,6 +62,7 @@ class User {
       });
     }
     const user = await CreateUser.emailCheck(req.body.email);
+    console.log (user[0].password);
     if (user.length === 0) {
       return res.status(404).send({
         status: 404,
@@ -67,7 +71,7 @@ class User {
     }
     const validPassword = await bcrypt.compare(req.body.password, user[0].password);
     if (validPassword) {
-      const newUser = _.omit(user, 'password');
+      const newUser = _.omit(user[0], 'id', 'otherName', 'password', 'isAdmin', 'passportUrl', 'phoneNumber');
       const token = jwt.sign({ newUser }, process.env.PRIVATE_KEY, { expiresIn: 360 });
       return res.status(200).send({
         status: 200,
