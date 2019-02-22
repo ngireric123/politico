@@ -1,20 +1,23 @@
-
 import bcrypt from 'bcrypt';
 import pool from './db';
 
 class CreateUser {
-  // check existingemail
-  constructor() {
-    pool.query('SELECT * FROM users', (error, res) => {
-      const row = res.rows;
-      this.users = row;
-      // this.users = res.rowCount;
-    });
+  async emailCheck(email) {
+    this.user = [];
+    this.res = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (this.res.rowCount < 0) {
+      this.user.push(this.res.rows[0]);
+    }
+    return this.user;
   }
 
-  check(email) {
-    const user = this.users.find(oldEmail => oldEmail.email === email);
-    return user;
+  async getSpecificUser(id) {
+    this.user = [];
+    this.res = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+    if (this.res.rowCount > 0) {
+      this.user.push(this.res.rows[0]);
+    }
+    return this.user;
   }
 
 
@@ -30,6 +33,7 @@ class CreateUser {
       this.password,
       data.passportUrl,
     ];
+    this.user = [];
     pool.query(`INSERT INTO
       users(
       "firstName",
@@ -42,7 +46,9 @@ class CreateUser {
       )
       VALUES($1, $2, $3, $4, $5, $6, $7)
     `, this.newUser);
-    this.users.push(data);
+    // this.users.push(data);
+    this.user.push(this.res.rows[0]);
+    return this.user;
   }
 }
 

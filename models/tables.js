@@ -1,8 +1,8 @@
 import pool from './db';
 
 
-const create = () => {
-  const usersTable = `CREATE TABLE IF NOT EXISTS
+const tablesCreate = () => {
+  const users = `CREATE TABLE IF NOT EXISTS
      users(
        id SERIAL PRIMARY KEY,"firstName" VARCHAR(24) NOT NULL,"lastName" VARCHAR(10) NOT NULL,
        "otherName" VARCHAR(10) NULL,
@@ -13,7 +13,7 @@ const create = () => {
        "isAdmin" BOOLEAN NOT NULL DEFAULT false
      )`;
 
-  const partiesTable = `CREATE TABLE IF NOT EXISTS
+  const party = `CREATE TABLE IF NOT EXISTS
     party(
      id SERIAL PRIMARY KEY,
      name VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ const create = () => {
     )`;
 
 
-  const candidatesTable = `CREATE TABLE IF NOT EXISTS
+  const candidate = `CREATE TABLE IF NOT EXISTS
    candidate(
      id SERIAL,
      office INT NOT NULL REFERENCES office(id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -32,7 +32,7 @@ const create = () => {
      PRIMARY KEY (id, office, candidate)
    )`;
 
-  const votesTable = `CREATE TABLE IF NOT EXISTS
+  const vote = `CREATE TABLE IF NOT EXISTS
   vote(
      id SERIAL PRIMARY KEY,
      createdon TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,7 +41,7 @@ const create = () => {
      candidate INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
   )`;
 
-  const petitionsTable = `CREATE TABLE IF NOT EXISTS
+  const petition = `CREATE TABLE IF NOT EXISTS
   petition(
      id SERIAL PRIMARY KEY,
      createdon TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -49,26 +49,26 @@ const create = () => {
      office INT NOT NULL REFERENCES office(id) ON DELETE CASCADE ON UPDATE CASCADE,
      body TEXT NOT NULL
   )`;
-  const officesTable = `CREATE TABLE IF NOT EXISTS
+  const office = `CREATE TABLE IF NOT EXISTS
   office(
    id SERIAL PRIMARY KEY,
    name VARCHAR(50) NOT NULL,
    type VARCHAR(50) NOT NULL
   )`;
   const newUserTable = `INSERT INTO 
-  usersTable(
+  users(
     "firstName",
     "lastName",
     "otherName",
-    email,
+    "email",
     "phoneNumber",
-    password,
+    "password",
     "passportUrl",
     "isAdmin"
     ) VALUES (
     'ngirababyeyi',
     'eric',
-    ' ',
+    'erico',
     'ngireric123@gmail.com',
     '0788716711',
     '123',
@@ -76,25 +76,25 @@ const create = () => {
     true
     )`;
 
-  const queries = `${usersTable};${partiesTable}; ${candidatesTable}; ${votesTable}; ${petitionsTable};${officesTable}; ${newUserTable}`;
+  const queries = `${users};${party}; ${candidate}; ${vote}; ${petition};${office}; ${newUserTable}`;
 
   pool.query(queries);
 };
 
-const deleteTables = () => {
+const tablesDelete = () => {
   const users = 'DROP TABLE IF EXISTS users CASCADE';
-  const petitions = 'DROP TABLE IF EXISTS petition';
-  const candidates = 'DROP TABLE IF EXISTS candidate';
-  const offices = 'DROP TABLE IF EXISTS office CASCADE';
-  const votes = 'DROP TABLE IF EXISTS vote';
-  const parties = 'DROP TABLE IF EXISTS party CASCADE';
-  const deleteQueries = `${users};${petitions}; ${candidates}; ${offices}; ${votes}; ${parties}`;
+  const petition = 'DROP TABLE IF EXISTS petition';
+  const candidate = 'DROP TABLE IF EXISTS candidate';
+  const office = 'DROP TABLE IF EXISTS office CASCADE';
+  const vote = 'DROP TABLE IF EXISTS vote';
+  const party = 'DROP TABLE IF EXISTS party CASCADE';
+  const deleteQueries = `${users};${petition}; ${candidate}; ${office}; ${vote}; ${party}`;
   pool.query(deleteQueries);
 };
 
 module.exports = {
-  create,
-  deleteTables,
+  tablesCreate,
+  tablesDelete,
 };
 
 require('make-runnable');

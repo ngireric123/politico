@@ -3,7 +3,6 @@ import express from 'express';
 import party from './routes/party';
 import office from './routes/office';
 import user from './routes/user';
-// import pool from './models/db';
 
 const app = express();
 app.use(express.json());

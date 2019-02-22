@@ -8,10 +8,13 @@
     "test": "nyc --reporter=lcov --reporter=text mocha --require babel-polyfill --require babel-register --timeout 10000 test/*js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "show-coverage": "xdg-open coverage/index.html",
-    "lint": " node_modules/.bin/eslint"
-  },
+    "lint": " node_modules/.bin/eslint",
+    "delete": "node --require babel-register models/tables tablesDelete",
+    "create": "node --require babel-register models/tables  tablesCreate",
+    "truncate": "node --require babel-register models/tables  truncateUsers"
+  },                         
   "engines": {
-    "node": "8.15.0"
+    "node": "8.15.0"  
   },
   "repository": {
     "type": "git",
