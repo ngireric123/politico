@@ -95,6 +95,7 @@ const tablesDelete = () => {
 module.exports = {
   tablesCreate,
   tablesDelete,
+
 };
 
 require('make-runnable');

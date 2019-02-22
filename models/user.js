@@ -5,10 +5,13 @@ class CreateUser {
   async emailCheck(email) {
     this.user = [];
     this.res = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (this.res.rowCount < 0) {
-      this.user.push(this.res.rows[0]);
+    // if (this.res.rowCount < 0) {
+    if (this.res.rowCount > 0) {
+       this.user.push(this.res.rows[0]);
+     // return false;
     }
     return this.user;
+    //return true;
   }
 
   async getSpecificUser(id) {
@@ -46,7 +49,6 @@ class CreateUser {
       )
       VALUES($1, $2, $3, $4, $5, $6, $7)
     `, this.newUser);
-    // this.users.push(data);
     this.user.push(this.res.rows[0]);
     return this.user;
   }
