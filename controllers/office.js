@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import postOffice from '../models/office';
+import Offices from '../models/office';
 
 class Office {
   // create a political office
@@ -19,7 +19,7 @@ class Office {
       });
     }
 
-    const office = await postOffice.officeCheck(req.body.name);
+    const office = await Offices.officeCheck(req.body.name);
     if (!office) {
       return res.status(409).send({
         status: 409,
@@ -27,7 +27,7 @@ class Office {
       });
     }
 
-    const newOffice = await postOffice.postOffice(req.body);
+    const newOffice = await Offices.postOffice(req.body);
     return res.status(201).send({
       status: 201,
       data: newOffice,
@@ -36,7 +36,7 @@ class Office {
   // get offices
 
   static async getAll(req, res) {
-    const count = await postOffice.getOffices();
+    const count = await Offices.getOffices();
     res.status(200).send({
       status: 200,
       data: count,
@@ -46,7 +46,8 @@ class Office {
   // get office
 
   static async getOne(req, res) {
-    const result = await postOffice.getOneOffice(req.params.id);
+    const result = await Offices.getOneOffice(req.params.id);
+
     if (result.rows.length === 0) {
       return res.status(404).send({
         status: 404,

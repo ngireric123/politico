@@ -55,7 +55,7 @@ const tablesCreate = () => {
    name VARCHAR(50) NOT NULL,
    type VARCHAR(50) NOT NULL
   )`;
-  const newUserTable = `INSERT INTO 
+  const newUserTable = `INSERT INTO
   users(
     "firstName",
     "lastName",
@@ -76,7 +76,7 @@ const tablesCreate = () => {
     true
     )`;
 
-  const queries = `${users};${party}; ${candidate}; ${vote}; ${petition};${office}; ${newUserTable}`;
+  const queries = `${users};${party};${office}; ${candidate}; ${vote}; ${petition}; ${newUserTable}`;
 
   pool.query(queries);
 };

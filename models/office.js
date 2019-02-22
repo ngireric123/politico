@@ -1,6 +1,6 @@
 import pool from './db';
 
-class Office {
+class Offices {
   async postOffice(data) {
     this.newOffice = [
       data.type,
@@ -24,9 +24,9 @@ class Office {
   }
 
   async getOneOffice(id) {
-    this.res = await pool.query('SELECT * FROM party WHERE id = $1', [id]);
+    this.res = await pool.query('SELECT * FROM office WHERE id = $1', [id]);
     return this.res;
   }
 }
 
-export default new Office();
+export default new Offices();
